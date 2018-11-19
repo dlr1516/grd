@@ -18,62 +18,61 @@
 #include <grd/Profiler.h>
 
 
+namespace grd {
 
-// ----------------------------------------------------
-// PROFILER
-// ----------------------------------------------------
+    // ----------------------------------------------------
+    // PROFILER
+    // ----------------------------------------------------
 
-void Profiler::updateStat(std::string label, double time) {
-    auto it = stats_.find(label);
-    if (it == stats_.end()) {
-        MeasureStatistic ms(time);
-        stats_.insert(std::make_pair(label, ms));
-    } else {
-        // Computes mean value and variance with online Welford’s method 
-        double timeAvgOld = it->second.timeAvg;
-        it->second.timeAvg += (time - timeAvgOld) / (double) it->second.count;
-        it->second.timeVar += (time - it->second.timeAvg) * (time - timeAvgOld);
-        if (time < it->second.timeMin) {
-            it->second.timeMin = time;
+    void Profiler::updateStat(std::string label, double time) {
+        auto it = stats_.find(label);
+        if (it == stats_.end()) {
+            MeasureStatistic ms(time);
+            stats_.insert(std::make_pair(label, ms));
+        } else {
+            // Computes mean value and variance with online Welford’s method 
+            double timeAvgOld = it->second.timeAvg;
+            it->second.timeAvg += (time - timeAvgOld) / (double) it->second.count;
+            it->second.timeVar += (time - it->second.timeAvg) * (time - timeAvgOld);
+            if (time < it->second.timeMin) {
+                it->second.timeMin = time;
+            }
+            if (time > it->second.timeMax) {
+                it->second.timeMax = time;
+            }
+            it->second.count++;
         }
-        if (time > it->second.timeMax) {
-            it->second.timeMax = time;
+    }
+
+    void Profiler::printStats(std::ostream& out) const {
+        for (auto s : stats_) {
+            out << s.first << " \t"
+                    << s.second.timeAvg << " \t"
+                    << s.second.getVariance() << " \t"
+                    << s.second.timeMin << " \t"
+                    << s.second.timeMax << " \t"
+                    << s.second.count << " \t"
+                    << std::endl;
         }
-        it->second.count++;
     }
-}
 
-void Profiler::printStats(std::ostream& out) const {
-    for (auto s : stats_) {
-        out << s.first << " \t"
-                << s.second.timeAvg << " \t"
-                << s.second.getVariance() << " \t"
-                << s.second.timeMin << " \t"
-                << s.second.timeMax << " \t"
-                << s.second.count << " \t"
-                << std::endl;
+    // ----------------------------------------------------
+    // SCOPED TIMER
+    // ----------------------------------------------------
+
+    ScopedTimer::ScopedTimer(std::string label) : label_(label), timeStart_(timer_type::now()) {
+        // before: timeStart_(std::chrono::high_resolution_clock::now())
     }
-}
 
-// ----------------------------------------------------
-// SCOPED TIMER
-// ----------------------------------------------------
+    ScopedTimer::~ScopedTimer() {
+        Profiler::getProfiler().updateStat(label_, elapsedTimeMs());
+    }
 
-ScopedTimer::ScopedTimer(std::string label) : label_(label), timeStart_(timer_type::now()) {
-    // before: timeStart_(std::chrono::high_resolution_clock::now())
-}
+    double ScopedTimer::elapsedTimeMs() const {
+        //auto elapsedNanosec = std::chrono::duration_cast<double,std::chrono::milliseconds>(std::chrono::steady_clock::now() - timeStart_).count();
+        //double timeElapsed = 1.0 * (double)elapsedNanosec;
+        std::chrono::duration<double, std::milli> timeElapsed = timer_type::now() - timeStart_;
+        return timeElapsed.count();
+    }
 
-ScopedTimer::~ScopedTimer() {
-    Profiler::getProfiler().updateStat(label_, elapsedTimeMs());
-}
-
-double ScopedTimer::elapsedTimeMs() const {
-    //auto elapsedNanosec = std::chrono::duration_cast<double,std::chrono::milliseconds>(std::chrono::steady_clock::now() - timeStart_).count();
-    //double timeElapsed = 1.0 * (double)elapsedNanosec;
-    std::chrono::duration<double, std::milli> timeElapsed = timer_type::now() - timeStart_;
-    return timeElapsed.count();
-}
-
-
-
-
+} // end of namespace 

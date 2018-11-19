@@ -26,35 +26,38 @@
 #include <vector>
 #include <deque>
 
-
-/**
- * Types for a 2D point in the form of Euclidean vector. 
- */
-typedef Eigen::Vector2d Point2d;
-typedef Eigen::Vector2f Point2f;
-typedef Eigen::Vector2i Point2i;
-
-/**
- * Types for a 2D matrix in the form of Euclidean vector. 
- */
-typedef Eigen::Matrix2d Matrix2d;
-typedef Eigen::Matrix2f Matrix2f;
-typedef Eigen::Matrix2i Matrix2i;
-
-/**
- * Types for STL vectors of different point types. 
- */
-typedef std::vector<Point2d, Eigen::aligned_allocator<Point2d> > VectorPoint2d;
-typedef std::vector<Point2f, Eigen::aligned_allocator<Point2f> > VectorPoint2f;
-typedef std::vector<Point2i, Eigen::aligned_allocator<Point2i> > VectorPoint2i;
-typedef std::deque<Point2d, Eigen::aligned_allocator<Point2d> > DequePoint2d;
-typedef std::deque<Point2f, Eigen::aligned_allocator<Point2f> > DequePoint2f;
-typedef std::deque<Point2i, Eigen::aligned_allocator<Point2i> > DequePoint2i;
-
-/**
- *  Type for reference frames
- */
-typedef Eigen::Isometry2d Transformation2d;
-typedef Eigen::Isometry2f Transformation2f;
+namespace grd {
 
 
+    /**
+     * Types for a 2D point in the form of Euclidean vector. 
+     */
+    typedef Eigen::Vector2d Point2d;
+    typedef Eigen::Vector2f Point2f;
+    typedef Eigen::Vector2i Point2i;
+
+    /**
+     * Types for a 2D matrix in the form of Euclidean vector. 
+     */
+    typedef Eigen::Matrix2d Matrix2d;
+    typedef Eigen::Matrix2f Matrix2f;
+    typedef Eigen::Matrix2i Matrix2i;
+
+    /**
+     * Types for STL vectors of different point types. 
+     */
+    typedef std::vector<Point2d, Eigen::aligned_allocator<Point2d> > VectorPoint2d;
+    typedef std::vector<Point2f, Eigen::aligned_allocator<Point2f> > VectorPoint2f;
+    typedef std::vector<Point2i, Eigen::aligned_allocator<Point2i> > VectorPoint2i;
+    typedef std::deque<Point2d, Eigen::aligned_allocator<Point2d> > DequePoint2d;
+    typedef std::deque<Point2f, Eigen::aligned_allocator<Point2f> > DequePoint2f;
+    typedef std::deque<Point2i, Eigen::aligned_allocator<Point2i> > DequePoint2i;
+
+    /**
+     *  Type for reference frames
+     */
+    typedef Eigen::Isometry2d Transformation2d;
+    typedef Eigen::Isometry2f Transformation2f;
+
+
+} // end of namespace 
