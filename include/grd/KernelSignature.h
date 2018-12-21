@@ -1,18 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   KernelSignature.h
- * Author: dario
+/**
+ * GRD - Geometric Relation Distribution
+ * Copyright (C) 2018 Dario Lodi Rizzini.
  *
- * Created on 01 September 2018, 09:36
+ * GRD is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * GRD is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with GRD.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#ifndef KERNELSIGNATURE_H
-#define KERNELSIGNATURE_H
+#ifndef KERNEL_SIGNATURE_H
+#define KERNEL_SIGNATURE_H
 
 #include <iostream>
 #include <cmath>

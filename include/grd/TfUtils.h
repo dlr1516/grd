@@ -1,14 +1,22 @@
-
 /**
- * @file TfUtils.h
- * @Author Fabjan Kallasi (kallasi@ce.unipr.it)
- * @brief Transforms class convertion functions
+ * GRD - Geometric Relation Distribution
+ * Copyright (C) 2018 Dario Lodi Rizzini.
+ *
+ * GRD is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  * 
- * This library provide some useful functions to convert transform matrix
- * and vectors
+ * GRD is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with GRD.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#pragma once
+#ifndef GRD_TF_UTILS_H
+#define GRD_TF_UTILS_H
 
 #include <Eigen/Dense>
 #include <grd/Point.h>
@@ -256,3 +264,5 @@ namespace grd {
     } // end of TfUtils
 
 } // end of namespace grd
+
+#endif
