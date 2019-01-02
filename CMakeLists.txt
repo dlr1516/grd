@@ -21,7 +21,7 @@ add_library(grd
   src/CorrespondenceGraph.cpp
   src/DistributionSignature.cpp
   src/functions.cpp
-  src/GlareSignature.cpp
+  src/GlarotSignature.cpp
   src/GnuplotVisualizer.cpp
   src/KernelSignature.cpp
   src/ParamMap.cpp
@@ -32,31 +32,14 @@ add_library(grd
   src/thirdparty/mcqd.cpp
 )
 
-#add_executable(extractSkip app/extractSkip.cpp)
-#target_link_libraries(extractSkip cglarot boost_system boost_filesystem boost_iostreams)
+add_executable(extractSkip app/extractSkip.cpp)
+target_link_libraries(extractSkip grd boost_system boost_filesystem boost_iostreams)
 
-#add_executable(drawSkip app/drawSkip.cpp)
-#target_link_libraries(drawSkip cglarot boost_system boost_filesystem boost_iostreams)
+add_executable(compareSignatures app/compareSignatures.cpp)
+target_link_libraries(compareSignatures grd boost_system boost_filesystem boost_iostreams)
 
-#add_executable(compareSignatures app/compareSignatures.cpp)
-#target_link_libraries(compareSignatures cglarot boost_system boost_filesystem boost_iostreams)
+add_executable(computeLoopClosureStats app/computeLoopClosureStats.cpp)
+target_link_libraries(computeLoopClosureStats grd boost_system boost_filesystem boost_iostreams)
 
-#add_executable(testApproximations app/testApproximations.cpp)
-#target_link_libraries(testApproximations cglarot boost_system boost_filesystem boost_iostreams)
-
-#add_executable(testDistributionSignature app/testDistributionSignature.cpp)
-#target_link_libraries(testDistributionSignature cglarot boost_system boost_filesystem boost_iostreams)
-
-#add_executable(drawDistributionSignature app/drawDistributionSignature.cpp)
-#target_link_libraries(drawDistributionSignature cglarot boost_system boost_filesystem boost_iostreams)
-
-#add_executable(computeLoopClosureStats app/computeLoopClosureStats.cpp)
-#target_link_libraries(computeLoopClosureStats cglarot boost_system boost_filesystem boost_iostreams)
-
-
-
-#add_executable(testCorrespondenceGraph app/testCorrespondenceGraph.cpp)
-#target_link_libraries(testCorrespondenceGraph cglarot boost_system boost_filesystem boost_iostreams)
-
-#add_executable(testGlarot app/testGlarot.cpp)
-#target_link_libraries(testGlarot cglarot boost_system boost_filesystem boost_iostreams)
+add_executable(testGlarot app/testGlarot.cpp)
+target_link_libraries(testGlarot grd boost_system boost_filesystem boost_iostreams)

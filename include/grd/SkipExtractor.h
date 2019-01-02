@@ -97,13 +97,18 @@ namespace grd {
         virtual ~SkipExtractor();
 
         /**
-         * 
+         * Sets the value of threshold used by extractor. 
          */
         void setScoreType(ScoreType st, double thres) {
             scoreType_ = st;
             scoreThres_ = thres;
         }
 
+        /**
+         * Sets the parameters used to classify the space between two laser beams
+         * as threshold. If r1 and r2 are the two ranges, then there is a gap if
+         *    |r1 - r2| > q + m * (r1 + r2) / 2
+         */
         void setGapThres(double q, double m) {
             distThresolhQ_ = q;
             distThresolhM_ = m;

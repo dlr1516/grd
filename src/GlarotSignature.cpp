@@ -15,35 +15,35 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GRD.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <grd/GlareSignature.h>
+#include <grd/GlarotSignature.h>
 
 namespace grd {
 
-    GlareSignature::GlareSignature()
+    GlarotSignature::GlarotSignature()
     : thetaStep_(M_PI / 8.0), rhoStep_(0.2) {
         // Initializes the grid and the default values of covariance matrix
         signatureGlobal_ = Eigen::MatrixXd::Zero(8, 50);
         setCovariance(thetaStep_, rhoStep_);
     }
 
-    GlareSignature::GlareSignature(int thetaNum, int rhoNum, double rhoStep)
+    GlarotSignature::GlarotSignature(int thetaNum, int rhoNum, double rhoStep)
     : thetaStep_(M_PI / thetaNum), rhoStep_(rhoStep) {
         // Initializes the grid and the default values of covariance matrix
         signatureGlobal_ = Eigen::MatrixXd::Zero(thetaNum, rhoNum);
         setCovariance(thetaStep_, rhoStep_);
     }
 
-    void GlareSignature::clear() {
+    void GlarotSignature::clear() {
         signatureGlobal_.fill(0.0);
         signaturePoints_.clear();
     }
 
-    void GlareSignature::setSize(int thetaNum, int rhoNum, double rhoStep) {
+    void GlarotSignature::setSize(int thetaNum, int rhoNum, double rhoStep) {
         signatureGlobal_ = Eigen::MatrixXd::Zero(thetaNum, rhoNum);
         rhoStep_ = rhoStep;
     }
 
-    void GlareSignature::setPoints(const VectorPoint2d& points) {
+    void GlarotSignature::setPoints(const VectorPoint2d& points) {
         double rho, theta;
         int irho, itheta;
         // Creates the signature of each point
@@ -89,13 +89,13 @@ namespace grd {
         std::copy(points.begin(), points.end(), std::back_inserter(points_));
     }
 
-    double GlareSignature::distanceL1(const GlareSignature& gs) const {
+    double GlarotSignature::distanceL1(const GlarotSignature& gs) const {
         //  double dist = (signatureGlobal_ - gs.getSignatureGlobal()).lpNorm<1>();
         double dist = distanceL1Shift(signatureGlobal_, gs.getSignatureGlobal(), 0);
         return dist;
     }
 
-    double GlareSignature::distanceL1Min(const GlareSignature& gs) const {
+    double GlarotSignature::distanceL1Min(const GlarotSignature& gs) const {
         //  double dist, distMin;
         //  distMin = 1e+6;
         //  for (int i = 0; i < signatureGlobal_.rows(); ++i) {
@@ -107,7 +107,7 @@ namespace grd {
         return distanceL1Min(signatureGlobal_, gs.getSignatureGlobal(), imin);
     }
 
-    void GlareSignature::matchPoints(const GlareSignature& gs, std::vector<std::pair<int, int> >& associations) const {
+    void GlarotSignature::matchPoints(const GlarotSignature& gs, std::vector<std::pair<int, int> >& associations) const {
         // Computes matrix of distances
         int n1 = getPointNum();
         int n2 = gs.getPointNum();
@@ -129,7 +129,7 @@ namespace grd {
         }
     }
 
-    void GlareSignature::exportGnuplotSignature(std::ostream& out) const {
+    void GlarotSignature::exportGnuplotSignature(std::ostream& out) const {
         for (int i = 0; i < signatureGlobal_.rows(); ++i) {
             for (int j = 0; j < signatureGlobal_.cols(); ++j) {
                 out << (thetaStep_ * i) << " " << (rhoStep_ * j) << " " << signatureGlobal_(i, j) << "\n";
@@ -142,7 +142,7 @@ namespace grd {
     // PRIVATE METHODS
     // --------------------------------------------------------
 
-    void GlareSignature::computeGaussianKernel() {
+    void GlarotSignature::computeGaussianKernel() {
         Eigen::Matrix2d covarInv;
         Eigen::Vector2d v;
         double normConst;
@@ -167,7 +167,7 @@ namespace grd {
         //  std::cout << __FILE__ << "," << __LINE__ << ": kernel\n" << kernel_ << std::endl;
     }
 
-    void GlareSignature::addTranslatedKernel(Eigen::MatrixXd& grid, int itheta, int irho) {
+    void GlarotSignature::addTranslatedKernel(Eigen::MatrixXd& grid, int itheta, int irho) {
         int gt, gr, kt, kr;
         int winTheta = kernel_.rows() / 2;
         int winRho = kernel_.cols() / 2;
@@ -183,7 +183,7 @@ namespace grd {
         }
     }
 
-    double GlareSignature::distanceL1Shift(const Eigen::MatrixXd& m1, const Eigen::MatrixXd& m2, int shift) const {
+    double GlarotSignature::distanceL1Shift(const Eigen::MatrixXd& m1, const Eigen::MatrixXd& m2, int shift) const {
         int rowNum = m1.rows();
         int colNum = m1.cols();
         int rowShift;
@@ -199,7 +199,7 @@ namespace grd {
         return dist;
     }
 
-    double GlareSignature::distanceL1Min(const Eigen::MatrixXd& m1, const Eigen::MatrixXd& m2, int& shiftMin) const {
+    double GlarotSignature::distanceL1Min(const Eigen::MatrixXd& m1, const Eigen::MatrixXd& m2, int& shiftMin) const {
         double dist, distMin;
         distMin = distanceL1Shift(m1, m2, 0);
         shiftMin = 0;

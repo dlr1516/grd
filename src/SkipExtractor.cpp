@@ -50,7 +50,7 @@ namespace grd {
             vertices[i].currVertexId = i;
             vertices[i].isGap = false;
             vertices[i].valid = true;
-            if (fabs(scan.ranges[iprev] - scan.ranges[i]) < distThresolhQ_ + distThresolhM_ * scan.ranges[i]) {
+            if (fabs(scan.ranges[iprev] - scan.ranges[i]) < distThresolhQ_ + 0.5 * distThresolhM_ * (scan.ranges[i] + scan.ranges[iprev])) {
                 vertices[i].prevVertexId = iprev;
 
             } else {
@@ -58,7 +58,7 @@ namespace grd {
                 vertices[i].isGap = true;
             }
             // Finds if there is a large range diff with next range
-            if (fabs(scan.ranges[inext] - scan.ranges[i]) < distThresolhQ_ + distThresolhM_ * scan.ranges[i]) {
+            if (fabs(scan.ranges[inext] - scan.ranges[i]) < distThresolhQ_ + 0.5 * distThresolhM_ * (scan.ranges[i] + scan.ranges[inext])) {
                 vertices[i].nextVertexId = inext;
             } else {
                 vertices[i].nextVertexId = i;

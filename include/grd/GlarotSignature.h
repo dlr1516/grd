@@ -29,7 +29,7 @@ namespace grd {
 
     /** Computes GLARE and GLAROT.
      */
-    class GlareSignature {
+    class GlarotSignature {
     public:
 
         EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -46,11 +46,11 @@ namespace grd {
 
         /** Constructor with default Glare signature size. 
          */
-        GlareSignature();
+        GlarotSignature();
 
         /** Constructor with the size of Glare Signature.
          */
-        GlareSignature(int thetaNum, int rhoNum, double rhoStep);
+        GlarotSignature(int thetaNum, int rhoNum, double rhoStep);
 
         /** Resets the content of GLARE: 
          * -global signature becomes zero;
@@ -121,15 +121,15 @@ namespace grd {
 
         /** Computes the L1 distance on global signature.
          */
-        double distanceL1(const GlareSignature& gs) const;
+        double distanceL1(const GlarotSignature& gs) const;
 
         /**
          */
-        double distanceL1Min(const GlareSignature& gs) const;
+        double distanceL1Min(const GlarotSignature& gs) const;
 
         /** Matches points according to their specific point signature.
          */
-        void matchPoints(const GlareSignature& gs, std::vector<std::pair<int, int> >& associations) const;
+        void matchPoints(const GlarotSignature& gs, std::vector<std::pair<int, int> >& associations) const;
 
         /** Exports for gnuplot surface:
          *     theta0 rho0 signature00
