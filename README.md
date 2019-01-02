@@ -11,9 +11,28 @@ The library has been kept to a minimal design.
 
 If you use this library, please cite the following paper: 
 
+<!--
 D. Lodi Rizzini, F. Galasso, S. Caselli. 
-Geometric Relation Distribution for Place Recognition
+Geometric Relation Distribution for Place Recognition,
 IEEE Robotics and Automation Letters (RA-L), Accepted paper, 2019. 
+-->
+
+```  
+   @article{lodirizzini2019ral,
+     author={Lodi Rizzini, D. and Galasso, F. and Caselli, S.},
+     title={{Geometric Relation Distribution for Place Recognition}}
+     journal={IEEE Robotics and Automation Letters (RA-L)},
+     volume={Accepted},
+     pages={},
+     month={},
+     year={2019},
+     publisher={IEEE},
+     issn = {},
+     doi = {},
+     note = {DOI },
+   }  
+```  
+
 
 or the most relevant associated publications by visiting: 
 http://rimlab.ce.unipr.it/
