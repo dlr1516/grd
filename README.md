@@ -20,16 +20,16 @@ IEEE Robotics and Automation Letters (RA-L), Accepted paper, 2019.
 ```  
    @article{lodirizzini2019ral,
      author={Lodi Rizzini, D. and Galasso, F. and Caselli, S.},
-     title={{Geometric Relation Distribution for Place Recognition}}
+     title={{Geometric Relation Distribution for Place Recognition}},
      journal={IEEE Robotics and Automation Letters (RA-L)},
-     volume={Accepted},
-     pages={},
-     month={},
+     volume={4},
+     issue={2},
+     pages={523-529},
      year={2019},
      publisher={IEEE},
-     issn = {},
-     doi = {},
-     note = {DOI },
+     issn = {2377-3766},
+     doi = {10.1109/LRA.2019.2891432},
+     note = {DOI 10.1109/LRA.2019.2891432},
    }  
 ```  
 

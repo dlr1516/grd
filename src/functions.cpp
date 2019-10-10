@@ -218,7 +218,7 @@ namespace grd {
     void umomentBiasray(int n, double mu, double sigma, std::vector<double>& moments) {
         double sigma2 = sigma * sigma;
         double ratio = -mu / sigma;
-        double g0 = sqrt(0.5 * M_PI) * (1.0 - std::erf(ratio / sqrt(2.0)));
+        double g0 = sqrt(0.5 * M_PI) * (1.0 + std::erf(ratio / sqrt(2.0)));
         double g1 = exp(-0.5 * ratio * ratio);
         double g2 = ratio * g1 + g0;
 
